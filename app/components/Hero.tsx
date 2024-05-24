@@ -3,6 +3,8 @@ import React from "react";
 import { client, urlFor } from "../lib/sanity";
 import Link from "next/link";
 
+export const revalidate = 60;
+
 async function getData() {
   const query = "*[_type == 'heroImage'][0]";
 
