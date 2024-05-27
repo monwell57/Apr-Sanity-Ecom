@@ -17,6 +17,7 @@ async function getData(slug: string) {
       price,
       name, 
       "slug": slug.current,
+      price_id
     
   }`;
 
@@ -75,6 +76,7 @@ async function ProductPage({ params }: { params: { slug: string } }) {
                 name={data.name}
                 image={data.images[0]}
                 key={data._id}
+                price_id={data.price_id}
               />
               <Button variant={"secondary"}>Checkout Now</Button>
             </div>

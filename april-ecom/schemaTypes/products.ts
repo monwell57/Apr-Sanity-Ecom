@@ -37,6 +37,11 @@ export default {
       title: 'Price',
     },
     {
+      name: 'price_id',
+      title: 'Stripe Price ID',
+      type: 'string',
+    },
+    {
       name: 'category',
       title: 'Product Category',
       type: 'reference',
