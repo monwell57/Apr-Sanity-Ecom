@@ -1,9 +1,12 @@
+import AddToBag from "@/app/components/AddToBag";
 import ImageGallery from "@/app/components/ImageGallery";
 import { client } from "@/app/lib/sanity";
 import { Button } from "@/components/ui/button";
 import { fullProduct } from "@/interface";
-import { Star } from "lucide-react";
+import { Star, Truck } from "lucide-react";
 import React from "react";
+
+export const revalidate = 60;
 
 async function getData(slug: string) {
   const query = `*[_type == 'product' && slug.current == '${slug}'][0]{
@@ -56,8 +59,28 @@ async function ProductPage({ params }: { params: { slug: string } }) {
                   ${data.price + 30}{" "}
                 </span>
               </div>
-              <span>Incl. Vat plus shipping</span>
+              <span className="text-sm text-gray-500">
+                Incl. Vat plus shipping
+              </span>
             </div>
+            <div className="mb-6 flex items-center gap-2 text-gray-500">
+              <Truck className="w-6 h-6" />
+              <span className="text-sm">2-4 Day Shipping</span>
+            </div>
+            <div className="flex gap-2.5">
+              <AddToBag
+                currency="USD"
+                description={data.description}
+                price={data.price}
+                name={data.name}
+                image={data.images[0]}
+                key={data._id}
+              />
+              <Button variant={"secondary"}>Checkout Now</Button>
+            </div>
+            <p className="mt-12 text-base text-gray-500 tracking-wide">
+              {data.description}
+            </p>
           </div>
         </div>
       </div>
